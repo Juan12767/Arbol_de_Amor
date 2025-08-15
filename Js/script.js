@@ -101,7 +101,7 @@ function showSignature() {
     dedication.appendChild(signature);
   }
   let firma = getURLParam('firma');
-  signature.textContent = firma ? decodeURIComponent(firma) : "Con amor, Juan♥️";
+  signature.textContent = firma ? decodeURIComponent(firma) : "Con amor, Juan💜";
   signature.classList.add('visible');
 }
 
@@ -139,8 +139,17 @@ function startFloatingObjects() {
     else setTimeout(spawn, 1200 + Math.random() * 1200);
   }
   spawn();
-
+}
+//cuenta regresiva o fecha especial
+function showCountdown() {
   function update() {
+    const container = document.getElementById('countdown');
+    let startParam = getURLParam('start');
+    let eventParam = getURLParam('event')
+    let startDate = startParam ? new Date(startParam + 'T00:00:00') : new Date('2025-00-00T00:00:00');
+    let eventDate = eventParam ? new Date(eventParam + 'T00:00:00') : new Date('2025-08-21T00:00:00');
+
+function update() {}
     const now = new Date();
     let diff = now - startDate;
     let days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -152,7 +161,7 @@ function startFloatingObjects() {
 
     container.innerHTML =
       `Llevamos juntos: <b>${days}</b> días<br>` +
-      `Nuestro aniversario: <b>${eventDays}d ${eventHours}h ${eventMinutes}m ${eventSeconds}s</b>`;
+      `Podriamos tener una relación si tu quieres en: <b>${eventDays}d ${eventHours}h ${eventMinutes}m ${eventSeconds}s</b>`;
     container.classList.add('visible');
   }
   update();
